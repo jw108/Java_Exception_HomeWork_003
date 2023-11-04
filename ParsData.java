@@ -90,10 +90,10 @@ public class ParsData {
                     }
                 }
 
-            } else if (i.matches("[0-9]+")) {
-                dataDic.put("tel", i);
             } else if (i.matches("[А-Яа-я]+")) {
                 sb.append(i + " ");
+            } else if (i.matches("[0-9]+")) {
+                dataDic.put("tel", i);
             } else {
                 try {
                     throw new DataException();
@@ -104,10 +104,11 @@ public class ParsData {
         }
         String[] fullName = String.valueOf(sb).split(" ");
         if (fullName.length == 3) {
-            dataDic.put("firstName", fullName[1]);
-            dataDic.put("lastName", fullName[0]);
-            dataDic.put("patronymic", fullName[2]);
+            dataDic.put("firstName", fullName[0]);
+            dataDic.put("surName", fullName[2]);
+            dataDic.put("patronymic", fullName[1]);
         }
+        
         return dataDic;
     }
 
